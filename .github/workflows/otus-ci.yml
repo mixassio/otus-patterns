@@ -2,7 +2,7 @@ name: otus-ci
 run-name: ${{ github.actor }} is otus-ci
 on:
   push:
-    branches: [ master ]
+    branches: [ master, hw-1 ]
   pull_request:
     branches: [ master ]
 jobs:
