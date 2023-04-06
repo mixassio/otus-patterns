@@ -1,4 +1,5 @@
-import { MovableAdapter, Move, Vector, IUObject } from './move';
+import { IUObject } from './IUObgect.interface';
+import { MovableAdapter, Move, Vector } from './move';
 
 let ship: IUObject;
 

@@ -1,3 +1,5 @@
+import { IUObject } from './IUObgect.interface';
+
 export class Vector {
   public x: number;
   public y: number;
@@ -28,11 +30,6 @@ export class Move {
       throw new Error('can not move');
     }
   }
-}
-
-export interface IUObject {
-  getProperty(key: string): Vector | number;
-  setProperty(key: string, newValue: Vector | number): void;
 }
 
 export class MovableAdapter implements Movable {

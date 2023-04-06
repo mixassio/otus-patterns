@@ -1,12 +1,12 @@
-import { IUObject } from './move';
-import { Rotate, RotateAdapter } from './rotate';
+import { IUObject } from './IUObgect.interface';
+import { Direction, Rotate, RotateAdapter } from './rotate';
 
 let ship: IUObject;
 
 describe('rotatable', () => {
   const getDirectionMock = jest
     .spyOn(RotateAdapter.prototype, 'getDirection')
-    .mockImplementationOnce(() => 3);
+    .mockImplementationOnce(() => new Direction(3, 2, 8));
 
   const getVelocityMock = jest
     .spyOn(RotateAdapter.prototype, 'getAngularVelosity')
@@ -25,7 +25,7 @@ describe('rotatable', () => {
     m.execute();
     expect(getDirectionMock).toHaveBeenCalled();
     expect(getVelocityMock).toHaveBeenCalled();
-    expect(setPositionMock).toHaveBeenCalledWith(5);
+    expect(setPositionMock).toHaveBeenCalledWith(new Direction(5, 2, 8));
   });
 
   it('not velocity', () => {
