@@ -32,7 +32,7 @@ export class Move {
 
 export interface IUObject {
   getProperty(key: string): Vector | number;
-  setProperty(key: string, newValue: object): void;
+  setProperty(key: string, newValue: Vector | number): void;
 }
 
 export class MovableAdapter implements Movable {

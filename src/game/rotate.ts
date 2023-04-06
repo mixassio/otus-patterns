@@ -1,8 +1,9 @@
-import { Vector } from './move';
+import { IUObject, Vector } from './move';
 
 interface Rotable {
   getDirection(): number;
   getAngularVelosity(): number;
+  getDirectionNumber(): number;
   setDirection(newD: number): void;
 }
 
@@ -13,7 +14,9 @@ export class Rotate {
   }
   public execute(): void {
     try {
-      this.r.setDirection(this.r.getDirection() + this.r.getAngularVelosity());
+      this.r.setDirection(
+        (this.r.getDirection() + this.r.getAngularVelosity()) % this.r.getDirectionNumber(),
+      );
     } catch (error) {
       throw new Error('can not rotate');
     }
@@ -25,30 +28,19 @@ export class RotateAdapter implements Rotable {
   constructor(o: IUObject) {
     this.o = o;
   }
-
-  getAngularVelosity(): number {
-    const d: number = this.o.getProperty('direction');
-    const n: number = this.o.getProperty('directionsNumber');
-    const v: number = this.o.getProperty('velocity');
-    return v * Math.cos((d / 360) * n), v * Math.sin((d / 360) * n);
+  getDirection(): number {
+    return this.o.getProperty('direction') as number;
   }
 
-  getDirection(): number {
-    return this.o.getProperty('direction');
+  getAngularVelosity(): number {
+    return this.o.getProperty('velocity') as number;
+  }
+
+  getDirectionNumber(): number {
+    return this.o.getProperty('directionsNumber') as number;
   }
 
   setDirection(newV: number): void {
     this.o.setProperty('direction', newV);
   }
 }
-
-export interface IUObject {
-  position?: Vector | undefined;
-  velocity?: Vector | undefined;
-  direction?: number;
-  directionNumber?: number;
-  getProperty(key: IOProperty): any;
-  setProperty(key: string, newValue: object | number): void;
-}
-
-export type IOProperty = 'direction' | 'directionsNumber' | 'velocity' | 'position';

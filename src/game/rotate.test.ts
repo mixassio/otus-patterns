@@ -1,4 +1,5 @@
-import { IUObject, Rotate, RotateAdapter } from './rotate';
+import { IUObject } from './move';
+import { Rotate, RotateAdapter } from './rotate';
 
 let ship: IUObject;
 
@@ -10,6 +11,10 @@ describe('rotatable', () => {
   const getVelocityMock = jest
     .spyOn(RotateAdapter.prototype, 'getAngularVelosity')
     .mockImplementationOnce(() => 2);
+
+  const getdirectionsNumberMock = jest
+    .spyOn(RotateAdapter.prototype, 'getDirectionNumber')
+    .mockImplementationOnce(() => 8);
 
   const setPositionMock = jest
     .spyOn(RotateAdapter.prototype, 'setDirection')
