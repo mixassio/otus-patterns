@@ -1,3 +1,4 @@
+import { ICommand } from './ICommand.interface';
 import { IUObject } from './IUObgect.interface';
 
 export class Direction {
@@ -21,7 +22,7 @@ interface Rotable {
   setDirection(newD: Direction): void;
 }
 
-export class Rotate {
+export class Rotate implements ICommand {
   public r: Rotable;
   constructor(r: Rotable) {
     this.r = r;
