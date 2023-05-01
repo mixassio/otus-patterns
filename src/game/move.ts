@@ -1,3 +1,4 @@
+import { ICommand } from './ICommand.interface';
 import { IUObject } from './IUObgect.interface';
 
 export class Vector {
@@ -18,7 +19,7 @@ export interface Movable {
   setPosition(newV: Vector): void;
 }
 
-export class Move {
+export class Move implements ICommand {
   public m: Movable;
   constructor(m: Movable) {
     this.m = m;
